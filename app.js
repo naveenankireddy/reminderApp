@@ -6,6 +6,7 @@ var logger = require("morgan");
 var helmet = require("helmet");
 var expressStaticGzip = require("express-static-gzip");
 var mongoose = require("mongoose");
+const { MONGOURI } = require("./keys");
 
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
@@ -41,15 +42,6 @@ app.use(
   })
 );
 
-// fix depreciation warning.
-mongoose.set("useFindAndModify", false);
-mongoose.set("useNewUrlParser", true);
-
-// connect to mongodb
-mongoose.connect("mongodb://localhost:27017/reminderApp", function (err) {
-  console.log("mongodb connected ?", err ? false : true);
-});
-
 // webpack
 if (process.env.NODE_ENV === "development") {
   var webpack = require("webpack");
@@ -65,6 +57,18 @@ if (process.env.NODE_ENV === "development") {
 
   app.use(require("webpack-hot-middleware")(compiler));
 }
+
+//o2cGQfp8486PxGSj
+
+// connect to mongodb
+mongoose.connect(
+  MONGOURI,
+  { useUnifiedTopology: true, useFindAndModify: false, useNewUrlParser: true },
+  async function (err) {
+    console.log("mongodb connected ?", err ? false : true);
+    require("./utils/seed");
+  }
+);
 
 // Route handler
 app.use("/api/v1", apiRouter); // api route handler

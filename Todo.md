@@ -1,0 +1,8 @@
+- Setup the folder structure. -Done
+- Setup Schema. -Done
+- Make Routes.
+- Add authenticatio for mentors.
+- Add & Edit Students.
+- Display list of students.
+- Profile of a student.
+- Automatic and manual trigger mail.
