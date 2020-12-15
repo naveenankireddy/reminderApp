@@ -11,6 +11,8 @@ const { MONGOURI } = require("./keys");
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
 
+require("dotenv").config();
+
 var app = express();
 
 app.use(helmet());
@@ -57,8 +59,6 @@ if (process.env.NODE_ENV === "development") {
 
   app.use(require("webpack-hot-middleware")(compiler));
 }
-
-//o2cGQfp8486PxGSj
 
 // connect to mongodb
 mongoose.connect(
