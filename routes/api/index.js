@@ -1,8 +1,14 @@
 var express = require("express");
-const authController = require("../../controllers/auth");
 var router = express.Router();
+const authController = require("../../controllers/auth");
+var validatorMiddleware = require("../../utils/validator-middleware");
 
 /* POST Login */
-router.post("/login", authController.loginMentor);
+router.post(
+  "/login",
+  validatorMiddleware.mustHaveFields(["email", "password"]),
+  validatorMiddleware.isValidEmail("email"),
+  authController.loginMentor
+);
 
 module.exports = router;
