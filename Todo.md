@@ -1,7 +1,7 @@
 - Setup the folder structure. -Done
 - Setup Schema. -Done
 - Make Routes.
-- Add authenticatio for mentors.
+- Add authenticatio for mentors. - Done
 - Add & Edit Students.
 - Display list of students.
 - Profile of a student.
