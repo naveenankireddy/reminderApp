@@ -12,6 +12,7 @@ var indexRouter = require("./routes/index");
 var studentsRouter = require("./routes/api/students");
 var paymentsRouter = require("./routes/api/payments");
 var apiRouter = require("./routes/api");
+var authMiddleware = require("./utils/auth-middleware");
 
 require("dotenv").config();
 
@@ -74,8 +75,8 @@ mongoose.connect(
 
 // Route handler
 app.use("/api/v1", apiRouter); // api route handler
-app.use("/api/v1/students", studentsRouter); // student route handler
-app.use("/api/v1/payments", paymentsRouter); // student route handler
+app.use("/api/v1/students", authMiddleware.verifyMentor, studentsRouter); // student route handler
+app.use("/api/v1/payments", authMiddleware.verifyMentor, paymentsRouter); // student route handler
 
 app.use("/", indexRouter); // react handler
 
