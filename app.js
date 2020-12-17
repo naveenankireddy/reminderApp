@@ -9,7 +9,8 @@ var mongoose = require("mongoose");
 const { MONGOURI } = require("./keys");
 
 var indexRouter = require("./routes/index");
-var studentRouter = require("./routes/api/students");
+var studentsRouter = require("./routes/api/students");
+var paymentsRouter = require("./routes/api/payments");
 var apiRouter = require("./routes/api");
 
 require("dotenv").config();
@@ -73,7 +74,9 @@ mongoose.connect(
 
 // Route handler
 app.use("/api/v1", apiRouter); // api route handler
-app.use("/api/v1/students", studentRouter); // student route handler
+app.use("/api/v1/students", studentsRouter); // student route handler
+app.use("/api/v1/payments", paymentsRouter); // student route handler
+
 app.use("/", indexRouter); // react handler
 
 // catch 404 and forward to error handler
